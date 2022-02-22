@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn">
+	<Appenders>
+		<!-- <RollingFile name="fileLogger" fileName="${basePath}/mylog.log" filePattern="${basePath}/mylog-%d{yyyy-MM-dd}.log"> -->
+		<RollingFile name="fileLogger" fileName="mylog.log" filePattern="mylog-%d{yyyy-MM-dd}.log">
+			<PatternLayout>
+				<pattern>%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n</pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
+			</Policies>
+		</RollingFile>
+
+		<Console name="console" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n" />
+		</Console>
+	</Appenders>
+	<Loggers>
+		<Logger name="dam.psp.exam" level="debug" additivity="true">
+			<appender-ref ref="fileLogger" level="debug" />
+		</Logger>
+		<Root level="debug" additivity="false">
+			<appender-ref ref="console" />
+		</Root>
+	</Loggers>
+</Configuration>
